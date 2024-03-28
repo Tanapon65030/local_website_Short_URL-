@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import QRCode from 'qrcode.react';
+import '../App.css';
 
 function UrlHistory() {
     const [urls, setUrls] = useState([]);
     const [isQrModalOpen, setQrModalOpen] = useState(false);
     const [currentQrUrl, setCurrentQrUrl] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // เพิ่มสถานะการเข้าสู่ระบบ
     const defaultProxy = "https://boom-short-url.onrender.com";
 
     const fetchUrls = useCallback(() => {
@@ -16,6 +18,8 @@ function UrlHistory() {
 
     useEffect(() => {
         fetchUrls();
+        const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // ตรวจสอบสถานะการเข้าสู่ระบบจาก Local Storage
+        setIsLoggedIn(storedIsLoggedIn); // กำหนดค่าให้กับตัวแปร state
     }, [fetchUrls]);
 
     const deleteUrl = (id) => {
@@ -34,19 +38,19 @@ function UrlHistory() {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '20px' }}>
+        <div className="url_History">
             <h1 className="url-form-title">URL History</h1>
             <ul style={{ listStyle: 'none', padding: 0 }}>
                 {urls.map(url => (
-                    <li key={url._id} style={{ background: '#f0f0f0', margin: '10px', padding: '20px', borderRadius: '8px', width: '100%', maxWidth: '600px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <li key={url._id} className="url_History_div">
                         <div style={{ wordBreak: 'break-all', flex: 1, marginRight: '30px' }}>
                             <div><strong>Short URL:</strong> <a href={`${defaultProxy}/${url.short}`} target="_blank" rel="noopener noreferrer">{`${defaultProxy}/${url.short}`}</a></div>
                             <div><strong>Full URL:</strong> <a href={url.full} target="_blank" rel="noopener noreferrer">{url.full}</a></div>
                             <div><strong>Clicks:</strong> {url.clicks}</div>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+                        <div className="url_History_div2">
                             <button onClick={() => openQrModal(`${defaultProxy}/${url.short}`)} className="delete-button">Generate QR</button>
-                            <button onClick={() => deleteUrl(url._id)} className="delete-button">Delete URL</button>
+                            {isLoggedIn && <button onClick={() => deleteUrl(url._id)} className="delete-button">Delete URL</button>} {/* แสดงปุ่ม Delete URL เมื่อเข้าสู่ระบบ */}
                         </div>
                     </li>
                 ))}

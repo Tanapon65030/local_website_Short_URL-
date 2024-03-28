@@ -28,7 +28,7 @@ nav ul li a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 30vh;
+  min-height: 20vh;
   padding: 10px;
 }
 
@@ -180,4 +180,45 @@ nav ul li a:hover {
 
 .close-qr-button:hover {
   background-color: gray; /* Darker on hover */
+}
+
+.url_History {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.url_History_div{
+  background: #f0f0f0;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.url_History_div2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center; /* จัดให้อยู่กึ่งกลางตามแนวนอน */
+  align-items: center; /* จัดให้อยู่กึ่งกลางตามแนวดิ่ง */
+  height: 100vh; /* ให้สูงเท่ากับความสูงของหน้าจอ */
+}
+
+/* เพิ่มการจัดระยะห่างรอบขอบ */
+.login-container > div {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
