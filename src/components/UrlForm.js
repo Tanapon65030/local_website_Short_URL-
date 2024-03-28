@@ -13,7 +13,7 @@ function UrlForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/shorten', { fullUrl: url });
+            const response = await axios.post(`${defaultProxy}/api/shorten`, { fullUrl: url });
             setShortUrl(response.data.short);
             setDisplayUrl(url); // อัพเดต URL ที่จะแสดงด้วยค่าปัจจุบันของ url ก่อนเคลียร์ค่าในช่องกรอก
             setError('');
