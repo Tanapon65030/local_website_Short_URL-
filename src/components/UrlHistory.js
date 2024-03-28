@@ -6,7 +6,7 @@ function UrlHistory() {
     const [urls, setUrls] = useState([]);
     const [isQrModalOpen, setQrModalOpen] = useState(false);
     const [currentQrUrl, setCurrentQrUrl] = useState('');
-    const defaultProxy = "https://boomtanapon.azurewebsites.net"; //http://localhost:5000 https://boomtanapon.azurewebsites.net
+    const defaultProxy = "https://boom-short-url.onrender.com"; //http://localhost:5000 https://boomtanapon.azurewebsites.net
 
     const fetchUrls = useCallback(async () => {
         try {

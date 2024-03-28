@@ -8,7 +8,7 @@ function UrlForm() {
     const [displayUrl, setDisplayUrl] = useState(''); // สถานะใหม่สำหรับเก็บ URL ที่จะแสดง
     const [shortUrl, setShortUrl] = useState('');
     const [error, setError] = useState('');
-    const defaultProxy = "https://boomtanapon.azurewebsites.net"; //http://localhost:5000 https://boomtanapon.azurewebsites.net
+    const defaultProxy = "https://boom-short-url.onrender.com"; //http://localhost:5000 https://boomtanapon.azurewebsites.net
 
     const handleSubmit = async (e) => {
         e.preventDefault();
