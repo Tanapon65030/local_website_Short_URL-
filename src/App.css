@@ -1,0 +1,183 @@
+/* App.css */
+
+nav ul {
+  margin-top: 30px; /* เพิ่มระยะห่างด้านบน */
+  list-style-type: none; /* ลบเครื่องหมายหัวข้อรายการ */
+  padding: 0; /* ลบระยะห่างภายใน */
+  text-align: center; /* จัดให้อยู่กึ่งกลาง */
+}
+
+nav ul li {
+  display: inline; /* แสดงลิงก์ในแนวนอน */
+  margin-right: 10px; /* เว้นระยะห่างระหว่างลิงก์ */
+}
+
+nav ul li a {
+  text-decoration: none; /* ลบเส้นใต้ข้อความ */
+  color: black; /* กำหนดสีข้อความเริ่มต้น */
+  padding: 5px; /* เพิ่มระยะห่างรอบขอบ */
+}
+
+nav ul li a:hover {
+  color: #00CC66; /* เปลี่ยนสีข้อความเมื่อเมาส์ชี้ */
+  background-color: #f0f0f0; /* ถ้าต้องการ, สามารถเพิ่มพื้นหลังสีเมื่อเมาส์ชี้ */
+}
+
+.url-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 30vh;
+  padding: 10px;
+}
+
+.url-form-title-container {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.url-form-title {
+  color: #00CC66;
+  font-size: 60px;
+  margin-bottom: 0;
+}
+
+.url-form-subtitle {
+  color: black;
+  font-size: small;
+  margin-top: 0;
+}
+
+.url-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.url-input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.url-submit-button {
+  padding: 10px 20px;
+  background-color: #00CC66; /* Initial green background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.url-submit-button:hover {
+  background-color: gray; /* A different shade of green on hover, adjust as needed */
+}
+
+
+.url-error-message {
+  color: red;
+}
+
+.url-result-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.url-link {
+  color: #00CC66;
+  display: inline-block; /* Makes max-width and overflow properties applicable */
+  max-width: 500px; /* Adjust max-width as needed */
+  overflow: hidden; /* Ensures overflow text is hidden */
+  text-overflow: ellipsis; /* Adds an ellipsis to truncated text */
+  white-space: nowrap; /* Prevents text from wrapping onto a new line */
+}
+
+.url-history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.url-list {
+  list-style: none;
+  padding: 0;
+}
+
+.url-item {
+  background-color: #f0f0f0;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px; /* Adjust based on your preference */
+}
+
+.url-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.url-item a:hover {
+  text-decoration: underline;
+}
+
+.delete-button {
+  background-color: #00CC66; /* Green background */
+  color: white;           /* White text */
+  border: none;           /* Remove default border */
+  padding: 10px 20px;     /* Add some padding */
+  border-radius: 5px;     /* Optional: Rounded corners */
+  cursor: pointer;        /* Change mouse cursor on hover */
+}
+
+.delete-button:hover {
+  background-color: gray; /* Darker green on hover */
+}
+
+.close-qr-button {
+  background-color: #00CC66; /* Green background */
+  color: white;           /* White text */
+  margin-top: 20px;       /* Increase space above the button */
+  border: none;           /* Remove default border */
+  padding: 10px 20px;     /* Add some padding */
+  border-radius: 5px;     /* Optional: Rounded corners */
+  cursor: pointer;        /* Change mouse cursor on hover */
+}
+
+.close-qr-button:hover {
+  background-color: gray; /* Darker green on hover */
+}
+
+.qr-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Shadow effect */
+}
+
+.close-qr-button {
+  background-color: #00CC66; /* Green background */
+  color: white; /* White text */
+  margin-top: 30px; /* Space above the button */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+}
+
+.close-qr-button:hover {
+  background-color: gray; /* Darker on hover */
+}
