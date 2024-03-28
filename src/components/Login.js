@@ -5,6 +5,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginError, setLoginError] = useState(''); // New state for login error messages
 
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -16,8 +17,10 @@ const Login = () => {
       console.log('Login successful');
       setIsLoggedIn(true);
       localStorage.setItem('isLoggedIn', 'true');
+      setLoginError(''); // Clear any error messages
     } else {
       console.log('Invalid username or password');
+      setLoginError('Invalid username or password'); // Set the error message
     }
   };
 
@@ -26,6 +29,7 @@ const Login = () => {
     setUsername('');
     setPassword('');
     localStorage.setItem('isLoggedIn', 'false');
+    setLoginError(''); // Clear any error messages
   };
 
   return (
@@ -57,7 +61,8 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="url-input"
             />
-          </div >
+          </div>
+          {loginError && <div style={{ color: 'red', marginTop: '10px' }}>{loginError}</div>}
           <div style={{ marginTop: '10px' }}>
             <button onClick={handleLogin} className="url-submit-button">Login</button>
           </div>
