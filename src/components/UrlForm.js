@@ -1,27 +1,50 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import QRCode from 'qrcode.react';
 import '../App.css';
 
 function UrlForm() {
     const [url, setUrl] = useState('');
-    const [displayUrl, setDisplayUrl] = useState(''); // สถานะใหม่สำหรับเก็บ URL ที่จะแสดง
+    const [displayUrl, setDisplayUrl] = useState('');
     const [shortUrl, setShortUrl] = useState('');
     const [error, setError] = useState('');
-    const defaultProxy = "https://boom-short-url.onrender.com"; //http://localhost:5000 https://boomtanapon.azurewebsites.net
+    const defaultProxy = "https://boom-short-url.onrender.com";
 
-    const handleSubmit = async (e) => {
+    const isValidUrl = (url) => {
+        const urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+                                       '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name and extension
+                                       '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                                       '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                                       '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                                       '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return !!urlPattern.test(url);
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post(`${defaultProxy}/api/shorten`, { fullUrl: url });
-            setShortUrl(response.data.short);
-            setDisplayUrl(url); // อัพเดต URL ที่จะแสดงด้วยค่าปัจจุบันของ url ก่อนเคลียร์ค่าในช่องกรอก
+
+        if (!isValidUrl(url)) {
+            setError('Invalid URL');
+            return;
+        }
+
+        fetch(`${defaultProxy}/api/shorten`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ fullUrl: url }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            setShortUrl(data.short);
+            setDisplayUrl(url);
             setError('');
-            setUrl(''); // เคลียร์ค่าในช่องกรอกหลังจากย่อ URL สำเร็จ
-        } catch (error) {
+            setUrl(''); 
+        })
+        .catch(error => {
             console.error('Error shortening URL:', error);
             setError('Error shortening URL');
-        }
+        });
     };
 
     return (
@@ -54,7 +77,6 @@ function UrlForm() {
             )}
         </div>
     );
-    
 }
 
 export default UrlForm;
