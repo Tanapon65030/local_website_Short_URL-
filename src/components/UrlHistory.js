@@ -6,25 +6,25 @@ function UrlHistory() {
     const [urls, setUrls] = useState([]);
     const [isQrModalOpen, setQrModalOpen] = useState(false);
     const [currentQrUrl, setCurrentQrUrl] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // เพิ่มสถานะการเข้าสู่ระบบ
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const defaultProxy = "https://boom-short-url.onrender.com";
 
     const fetchUrls = useCallback(() => {
         fetch(`${defaultProxy}/api/urls`)
-            .then(response => response.json()) // Directly parsing the JSON without checking response.ok
+            .then(response => response.json()) 
             .then(data => setUrls(data))
             .catch(error => console.error('Error fetching URLs:', error));
     }, [defaultProxy]);
 
     useEffect(() => {
         fetchUrls();
-        const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // ตรวจสอบสถานะการเข้าสู่ระบบจาก Local Storage
-        setIsLoggedIn(storedIsLoggedIn); // กำหนดค่าให้กับตัวแปร state
+        const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        setIsLoggedIn(storedIsLoggedIn);
     }, [fetchUrls]);
 
     const deleteUrl = (id) => {
         fetch(`${defaultProxy}/api/urls/${id}`, { method: 'DELETE' })
-            .then(() => fetchUrls()) // Assuming delete is successful without checking response.ok
+            .then(() => fetchUrls())
             .catch(error => console.error('Error deleting URL:', error));
     };
 
@@ -50,7 +50,7 @@ function UrlHistory() {
                         </div>
                         <div className="url_History_div2">
                             <button onClick={() => openQrModal(`${defaultProxy}/${url.short}`)} className="delete-button">Generate QR</button>
-                            {isLoggedIn && <button onClick={() => deleteUrl(url._id)} className="delete-button">Delete URL</button>} {/* แสดงปุ่ม Delete URL เมื่อเข้าสู่ระบบ */}
+                            {isLoggedIn && <button onClick={() => deleteUrl(url._id)} className="delete-button">Delete URL</button>}
                         </div>
                     </li>
                 ))}
