@@ -17,10 +17,14 @@ function UrlHistory() {
     }, [defaultProxy]);
 
     useEffect(() => {
-        fetchUrls();
         const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         setIsLoggedIn(storedIsLoggedIn);
-    }, [fetchUrls]);
+
+    }, []);
+
+    useEffect(() => {
+        fetchUrls();
+    });
 
     const deleteUrl = (id) => {
         fetch(`${defaultProxy}/api/urls/${id}`, { method: 'DELETE' })
