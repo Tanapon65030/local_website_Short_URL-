@@ -45,7 +45,7 @@ function UrlHistory() {
         <div className="url_History">
             <h1 className="url-form-title">URL History</h1>
             <ul style={{ listStyle: 'none', padding: 0 }}>
-                {urls.map(url => (
+                {urls.slice().reverse().map(url => (
                     <li key={url._id} className="url_History_div">
                         <div style={{ wordBreak: 'break-all', flex: 1, marginRight: '30px' }}>
                             <div><strong>Short URL:</strong> <a href={`${defaultProxy}/${url.short}`} target="_blank" rel="noopener noreferrer">{`${defaultProxy}/${url.short}`}</a></div>
