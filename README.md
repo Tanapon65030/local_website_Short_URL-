@@ -35,7 +35,7 @@ const defaultProxy = " url ของคุณ ";
 const defaultProxy = " url ของคุณ ";
 ```
 
-รัน local ด้วยคำสั่ง
+รัน server ด้วยคำสั่ง
 ```bash
 npm start
 ```
