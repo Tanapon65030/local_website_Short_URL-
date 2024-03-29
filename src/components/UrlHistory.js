@@ -62,6 +62,9 @@ function UrlHistory() {
             {isQrModalOpen && (
                 <div className="qr-modal">
                     <QRCode value={currentQrUrl} size={256} />
+                    <br></br>
+                    <strong>Short URL:</strong>
+                    <a href={currentQrUrl} target="_blank" rel="noopener noreferrer">{currentQrUrl}</a>
                     <button onClick={closeQrModal} className="close-qr-button">Close</button>
                 </div>
             )}
