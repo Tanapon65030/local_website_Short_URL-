@@ -20,7 +20,7 @@ function UrlHistory() {
         fetchUrls();
         const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         setIsLoggedIn(storedIsLoggedIn);
-    }, [fetchUrls]);
+    });
 
     const deleteUrl = (id) => {
         fetch(`${defaultProxy}/api/urls/${id}`, { method: 'DELETE' })
